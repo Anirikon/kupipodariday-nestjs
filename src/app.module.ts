@@ -5,6 +5,10 @@ import { ConfigModule } from '@nestjs/config';
 import { WishesModule } from './wishes/wishes.module';
 import { WishlistsModule } from './wishlists/wishlists.module';
 import { OffersModule } from './offers/offers.module';
+import { User } from "./users/user.model";
+import { Wish } from "./wishes/wish.model";
+import { Wishlist } from "./wishlists/wishlist.model";
+import { Offer } from "./offers/offer.model";
 
 @Module( {
     controllers: [],
@@ -20,7 +24,7 @@ import { OffersModule } from './offers/offers.module';
             password: String(process.env.POSTGRES_PASSWORD),
             database: String(process.env.POSTGRES_DB),
             autoLoadEntities: true,
-            entities: [],
+            entities: [User, Wish, Wishlist, Offer],
             synchronize: true,
         }),
         UsersModule,

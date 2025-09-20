@@ -1,7 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Wish } from "src/wishes/wish.model";
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class wishlist {
+export class Wishlist {
     @PrimaryGeneratedColumn()
         id: number
             
@@ -22,8 +23,19 @@ export class wishlist {
                 description: string
 
                 @Column()
-                image: Blob
+                image: string
 
-                @Column()
-                items: [string]
+                @ManyToMany(() => Wish)
+                @JoinTable({
+                    name: 'wishlist_items',
+                    joinColumn: {
+                        name: 'wishlist_id',
+                        referencedColumnName: 'id',
+                    }, 
+                    inverseJoinColumn: {
+                        name: 'wish_id',
+                        referencedColumnName: 'id',
+                    },
+                })
+                items: Wish[]
 }

@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "src/users/user.model";
+import { Wish } from "src/wishes/wish.model";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity()
@@ -12,17 +14,15 @@ export class Offer {
         @Column()
         updatedAt: Date
 
-        @Column()
+        @ManyToOne(() => User, id => id.offers)
         user: number
 
-        @Column()
-        item: string
+        @ManyToOne(() => Wish, (wish) => wish.offers)
+        item: Wish
 
         @Column()
         amount: number
 
-        @Column({
-            default: false
-        })
+        @Column({ default: false })
         hidden: boolean
 }
