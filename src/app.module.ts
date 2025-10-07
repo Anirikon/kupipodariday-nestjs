@@ -9,10 +9,12 @@ import { User } from "./users/user.model";
 import { Wish } from "./wishes/wish.model";
 import { Wishlist } from "./wishlists/wishlist.model";
 import { Offer } from "./offers/offer.model";
+import { AuthModule } from './auth/auth.module';
+import { AuthuthService } from './authuth/authuth.service';
 
 @Module( {
     controllers: [],
-    providers: [],
+    providers: [AuthuthService],
     imports: [
         ConfigModule.forRoot({
             envFilePath: `.${process.env.NODE_ENV}.env`}),
@@ -31,6 +33,7 @@ import { Offer } from "./offers/offer.model";
         WishesModule,
         WishlistsModule,
         OffersModule,
+        AuthModule,
     ]
 })
 export class AppModule {}
