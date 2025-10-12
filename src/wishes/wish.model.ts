@@ -13,7 +13,7 @@ export class Wish {
             @Column({ type: 'date'})
             updatedAt: Date
 
-            @Column({ type: 'varchar', length: 200 })
+            @Column({ type: 'varchar', length: 250 })
             name: string
 
             @Column({ type: 'varchar' })
