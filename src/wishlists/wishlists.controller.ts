@@ -1,10 +1,13 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { CreateWishlistDto } from './dtoWishlist/create-wishlist.dto';
+import { WishlistsService } from './wishlists.service';
+import { UpdateWishlistDto } from './dtoWishlist/update-wishlist.dto';
 
 @Controller('wishlists')
 export class WishlistsController {
-    constructor(private wishService: WishlistService) {   }
+    constructor(private wishService: WishlistsService) {   }
     @Post()
-    create(@Body() dto: CreateWislistDto) {
+    create(@Body() dto: CreateWishlistDto) {
         return this.wishService.create(dto);
     }
 
