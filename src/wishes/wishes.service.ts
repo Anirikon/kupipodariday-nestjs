@@ -2,8 +2,6 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Wish } from './wish.model';
 import { Repository } from 'typeorm';
-import { User } from 'src/users/user.model';
-import { NotFoundError } from 'rxjs';
 import { CreateWishDto } from './dtoWish/create-wish.dto';
 import { UpdateWishDto } from './dtoWish/update-wish.dto';
 
