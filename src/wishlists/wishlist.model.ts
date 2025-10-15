@@ -1,41 +1,47 @@
+import { UserPublicProfileResponseDto } from "src/users/dtoUser/user-public-prodile-response.dto";
+import { WishPartial } from "src/wishes/wish-partial.model";
 import { Wish } from "src/wishes/wish.model";
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 
 @Entity()
 export class Wishlist {
-    @PrimaryGeneratedColumn()
-        id: number
-            
-                @Column()
-                createdAt: Date
-            
-                @Column()
-                updatedAt: Date
+  @PrimaryGeneratedColumn()
+  id: number;
 
-                @Column({
-                    length: 250
-                })
-                name: string
+  @Column()
+  createdAt: Date;
 
-                @Column({
-                    length: 1500
-                })
-                description: string
+  @Column()
+  updatedAt: Date;
 
-                @Column()
-                image: string
+  @Column({
+    length: 250,
+  })
+  name: string;
 
-                @ManyToMany(() => Wish)
-                @JoinTable({
-                    name: 'wishlist_items',
-                    joinColumn: {
-                        name: 'wishlist_id',
-                        referencedColumnName: 'id',
-                    }, 
-                    inverseJoinColumn: {
-                        name: 'wish_id',
-                        referencedColumnName: 'id',
-                    },
-                })
-                items: Wish[]
+  @Column()
+  image: string;
+
+  @Column()
+  owner: UserPublicProfileResponseDto;
+
+  @ManyToMany(() => Wish)
+  @JoinTable({
+    name: "wishlist_items",
+    joinColumn: {
+      name: "wishlist_id",
+      referencedColumnName: "id",
+    },
+    inverseJoinColumn: {
+      name: "wish_id",
+      referencedColumnName: "id",
+    },
+  })
+  items: WishPartial[];
 }

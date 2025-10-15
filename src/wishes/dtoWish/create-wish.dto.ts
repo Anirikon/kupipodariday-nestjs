@@ -13,15 +13,8 @@ export class CreateWishDto {
     @IsUrl()
     image: string
 
-
     @IsDecimal({ decimal_digits: '2' })
     price: number
-    
-    @IsDecimal({ decimal_digits: '2' })
-    raised: number
-                
-    @IsString()
-    owner: string
     
     @IsString()
     @MaxLength(1024)

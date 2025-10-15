@@ -10,11 +10,11 @@ import { Wish } from "./wishes/wish.model";
 import { Wishlist } from "./wishlists/wishlist.model";
 import { Offer } from "./offers/offer.model";
 import { AuthModule } from './auth/auth.module';
-import { AuthuthService } from './authuth/authuth.service';
+import { AuthService } from './auth/auth.service';
 
 @Module( {
     controllers: [],
-    providers: [AuthuthService],
+    providers: [AuthService],
     imports: [
         ConfigModule.forRoot({
             envFilePath: `.${process.env.NODE_ENV}.env`}),

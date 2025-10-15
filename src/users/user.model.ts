@@ -38,15 +38,12 @@ export class User {
     @Column({ unique: true })
     email: string
 
-    @Column()
-    password: string
-
     @ManyToMany(() => Wish)
     @JoinTable()
     wishes: Wish[]
 
     @OneToMany(() => Offer, offer => offer.user)
-    offers: Offer[]
+    offers: Wish[]
 
     @ManyToMany(() => Wishlist)
     @JoinTable()

@@ -1,4 +1,5 @@
 import { IsDecimal, IsString, IsUrl, MaxLength, MinLength } from "class-validator";
+import { UserPublicProfileResponseDto } from "src/users/dtoUser/user-public-prodile-response.dto";
 
 export class UpdateWishDto {
 
@@ -21,7 +22,7 @@ export class UpdateWishDto {
     raised?: number
                 
     @IsString()
-    owner?: string
+    owner?: UserPublicProfileResponseDto
     
     @IsString()
     @MaxLength(1024)

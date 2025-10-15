@@ -1,6 +1,4 @@
 import { ArrayMinSize, IsArray, IsString, IsUrl, MaxLength, MinLength } from "class-validator";
-import { Wish } from "src/wishes/wish.model";
-
 
 export class UpdateWishlistDto {
 
@@ -19,5 +17,5 @@ export class UpdateWishlistDto {
     @IsArray()
     @ArrayMinSize(1)
     @IsUrl({}, { each: true })
-    items?: Wish[];
+    itemsId?: number[];
 }

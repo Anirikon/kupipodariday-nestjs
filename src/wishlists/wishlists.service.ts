@@ -15,7 +15,7 @@ export class WishlistsService {
         async findOne(id: number): Promise<Wishlist | null> {
             const wishlist = this.wishlistRepository.findOne({ where: { id }})
             if(!wishlist) {
-                throw new NotFoundException(`Список подарков с ID: ${id} не найден`) 
+                throw new NotFoundException(`Список желаемых подарков с ID: ${id} не найден`) 
             }
             return wishlist;
         }

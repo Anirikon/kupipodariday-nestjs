@@ -1,7 +1,28 @@
-import { IsJWT } from "class-validator";
+import { IsEmail, IsNumber, IsString, MaxLength, MinLength } from "class-validator";
 
-export class SigninUserResponseDto {
+export class SignupUserResponseDto {
+    @IsNumber()
+    id: number;
 
-    @IsJWT()
-    access_token: string
+    @IsString()
+    @MinLength(1)
+    @MaxLength(64)
+    username: string;
+
+    @IsString()
+    @MinLength(1)
+    @MaxLength(200)
+    about: string;
+
+    @IsString()
+    avatar: string;
+
+    @IsEmail()
+    email: string;
+
+    @IsString()
+    createdAt: Date;
+    
+    @IsString()
+    updatedAt: Date;
 }

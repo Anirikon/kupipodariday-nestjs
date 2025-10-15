@@ -1,13 +1,9 @@
-import { IsBoolean, IsDecimal, IsNumber, IsUrl } from "class-validator"
-import { Wish } from "src/wishes/wish.model"
+import { IsBoolean, IsDecimal } from "class-validator"
 
 export class CreateOfferDto {
 
-    @IsNumber()
-    user: number
-
-    @IsUrl()
-    item: Wish
+    @IsDecimal()
+    itemId: number
 
     @IsDecimal({ decimal_digits: '2'} )
     amount: number

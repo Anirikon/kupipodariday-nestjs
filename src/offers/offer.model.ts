@@ -15,7 +15,7 @@ export class Offer {
         updatedAt: Date
 
         @ManyToOne(() => User, id => id.offers)
-        user: number
+        user: User
 
         @ManyToOne(() => Wish, (wish) => wish.offers)
         item: Wish
