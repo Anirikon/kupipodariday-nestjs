@@ -38,8 +38,7 @@ export class User {
     @Column({ unique: true })
     email: string
 
-    @ManyToMany(() => Wish)
-    @JoinTable()
+    @OneToMany(() => Wish, wish => wish.owner)
     wishes: Wish[]
 
     @OneToMany(() => Offer, offer => offer.user)

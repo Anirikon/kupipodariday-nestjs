@@ -1,5 +1,5 @@
 import { Offer } from "src/offers/offer.model";
-import { UserPublicProfileResponseDto } from "src/users/dtoUser/user-public-prodile-response.dto";
+import { UserPublicProfileResponseDto } from "src/users/dtoUser/user-public-profile-response.dto";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()

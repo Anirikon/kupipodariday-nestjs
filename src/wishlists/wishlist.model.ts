@@ -1,4 +1,4 @@
-import { UserPublicProfileResponseDto } from "src/users/dtoUser/user-public-prodile-response.dto";
+import { UserPublicProfileResponseDto } from "src/users/dtoUser/user-public-profile-response.dto";
 import { WishPartial } from "src/wishes/wish-partial.model";
 import { Wish } from "src/wishes/wish.model";
 import {

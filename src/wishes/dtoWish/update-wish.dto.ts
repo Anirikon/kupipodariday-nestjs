@@ -1,5 +1,5 @@
 import { IsDecimal, IsString, IsUrl, MaxLength, MinLength } from "class-validator";
-import { UserPublicProfileResponseDto } from "src/users/dtoUser/user-public-prodile-response.dto";
+import { UserPublicProfileResponseDto } from "src/users/dtoUser/user-public-profile-response.dto";
 
 export class UpdateWishDto {
 
