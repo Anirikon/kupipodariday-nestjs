@@ -1,7 +1,7 @@
 import { Offer } from "src/offers/offer.model";
 import { Wish } from "src/wishes/wish.model";
 import { Wishlist } from "src/wishlists/wishlist.model";
-import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 
 @Entity()
@@ -9,10 +9,10 @@ export class User {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column()
+    @CreateDateColumn()
     createdAt: Date
 
-    @Column()
+    @UpdateDateColumn()
     updatedAt: Date
 
     @Column({
@@ -37,6 +37,9 @@ export class User {
 
     @Column({ unique: true })
     email: string
+
+    @Column()
+    password: string
 
     @OneToMany(() => Wish, wish => wish.owner)
     wishes: Wish[]

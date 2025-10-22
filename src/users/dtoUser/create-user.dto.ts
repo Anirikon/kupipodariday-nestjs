@@ -23,5 +23,4 @@ export class CreateUserDto {
     @IsOptional()
     @IsString()
     avatar: string
-
 }

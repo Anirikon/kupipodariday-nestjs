@@ -11,6 +11,7 @@ import { Wishlist } from "./wishlists/wishlist.model";
 import { Offer } from "./offers/offer.model";
 import { AuthModule } from './auth/auth.module';
 import { AuthService } from './auth/auth.service';
+import { EncryptionModule } from './encryption/encryption.module';
 
 @Module( {
     controllers: [],
@@ -34,6 +35,7 @@ import { AuthService } from './auth/auth.service';
         WishlistsModule,
         OffersModule,
         AuthModule,
+        EncryptionModule,
     ]
 })
 export class AppModule {}

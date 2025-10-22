@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { UsersService } from 'src/users/users.service';
 import { JwtGuard } from './jwt.guard';
 import { CreateUserDto } from 'src/users/dtoUser/create-user.dto';
+import { LocalGuard } from './local.guard';
 
 @Controller()
 export class AuthController {
@@ -10,7 +11,7 @@ export class AuthController {
         private userService: UsersService,
         private authService: AuthService) {  }
 
-    @UseGuards(JwtGuard)
+    @UseGuards(LocalGuard)
     @Post('signin')
     signin(@Req() req) {
         const user = req.user;

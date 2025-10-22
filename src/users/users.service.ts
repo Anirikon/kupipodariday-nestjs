@@ -8,7 +8,8 @@ import { CreateUserDto } from './dtoUser/create-user.dto';
 @Injectable()
 export class UsersService {
     constructor(@InjectRepository(User) private userRepository: Repository<User>,) {}
-        async findAll(): Promise<User[]> {
+        
+    async findAll(): Promise<User[]> {
             return this.userRepository.find();
         }
 
@@ -39,5 +40,20 @@ export class UsersService {
         async delete(id: number): Promise<Object> {
             
             return await this.userRepository.delete(id);
+        }
+
+        async findOneByUsername(username: string): Promise<User> {
+            const user = await this.userRepository.findOne({ where: { username } })
+            if (!user) {
+                throw new NotFoundException(`Пользователь с именем: ${username} не найден`);
+            }
+            return user;
+        }
+        async findOneByEmail(email: string): Promise<User> {
+            const user = await this.userRepository.findOne({ where: { email } })
+            if (!user) {
+                throw new NotFoundException(`Пользователь с email: ${email} не найден`);
+            }
+            return user;
         }
 }
