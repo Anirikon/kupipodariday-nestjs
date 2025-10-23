@@ -1,3 +1,4 @@
+import { IsArray } from "class-validator";
 import { UserPublicProfileResponseDto } from "src/users/dtoUser/user-public-profile-response.dto";
 import { WishPartial } from "src/wishes/wish-partial.model";
 import { Wish } from "src/wishes/wish.model";
@@ -44,4 +45,7 @@ export class Wishlist {
     },
   })
   items: WishPartial[];
+
+  @IsArray()
+  itemsId: number[];
 }

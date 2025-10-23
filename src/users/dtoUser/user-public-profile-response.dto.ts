@@ -17,9 +17,9 @@ export class UserPublicProfileResponseDto {
     avatar: string
 
     @IsDate()
-    createdAt: string
+    createdAt: Date
 
     @IsDate()
-    updatedAt: string
+    updatedAt: Date
 
 }

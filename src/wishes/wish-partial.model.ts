@@ -7,10 +7,10 @@ export class WishPartial {
     id?: number;
 
     @Column({ type: 'date'})
-    createdAt?: string;
+    createdAt?: Date;
 
     @Column({ type: 'date'})
-    updatedAt?: string;
+    updatedAt?: Date;
 
     @Column({ type: 'varchar', length: 250 })
     name?: string;

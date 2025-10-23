@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Req } from '@nestjs/common';
 import { CreateWishlistDto } from './dtoWishlist/create-wishlist.dto';
 import { WishlistsService } from './wishlists.service';
 import { UpdateWishlistDto } from './dtoWishlist/update-wishlist.dto';
@@ -7,8 +7,8 @@ import { UpdateWishlistDto } from './dtoWishlist/update-wishlist.dto';
 export class WishlistsController {
     constructor(private wishService: WishlistsService) {   }
     @Post()
-    create(@Body() dto: CreateWishlistDto) {
-        return this.wishService.create(dto);
+    create(@Body() dto: CreateWishlistDto, @Req() req) {
+        return this.wishService.create(req.user, dto);
     }
 
     @Get()
@@ -22,12 +22,12 @@ export class WishlistsController {
     }
 
     @Delete(':id')
-    removeOne(@Param('id') id: number) {
-        return this.wishService.delete(id);
+    removeOne(@Param('id') id: number, @Req() req) {
+        return this.wishService.delete(id, req.user);
     }
 
     @Patch(':id')
-    updateOne(@Param('id') id: number, @Body() dto: UpdateWishlistDto) {
-        return this.wishService.update(id, dto)
+    updateOne(@Param('id') id: number, @Body() dto: UpdateWishlistDto, @Req() req) {
+        return this.wishService.update(id, dto, req.user)
     }
 }
