@@ -1,4 +1,6 @@
-import { IsEmail, IsOptional, IsString, MaxLength, MinLength } from "class-validator";
+import { IsArray, IsDate, IsDecimal, IsEmail, IsOptional, IsString, MaxLength, MinLength } from "class-validator";
+import { Wish } from "src/wishes/wish.model";
+import { Wishlist } from "src/wishlists/wishlist.model";
 
 export class CreateUserDto {
 
@@ -23,4 +25,22 @@ export class CreateUserDto {
     @IsOptional()
     @IsString()
     avatar: string
+
+    @IsDecimal()
+     id: number
+
+     @IsDate()
+         createdAt: Date
+
+     @IsDate()
+         updatedAt: Date
+
+    @IsArray()
+    wishes: Wish[]
+
+    @IsArray()
+    offers: Wish[]
+
+    @IsArray()
+    wishlists: Wishlist[]
 }

@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { User } from 'src/users/user.model';
 import { JwtService } from '@nestjs/jwt'
-import { EncryptionService } from 'src/encryption/encryption.service';
 import { UsersService } from 'src/users/users.service';
 
 @Injectable()
@@ -9,7 +8,6 @@ export class AuthService {
     constructor(
         private jwtService: JwtService,
         private usersService: UsersService,
-        private encryptionService: EncryptionService,
     ) {}
 
     auth(user: User) {

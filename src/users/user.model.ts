@@ -47,7 +47,6 @@ export class User {
     @OneToMany(() => Offer, offer => offer.user)
     offers: Wish[]
 
-    @ManyToMany(() => Wishlist)
-    @JoinTable()
+    @OneToMany(() => Wishlist, (wishlist) => wishlist.owner)
     wishlists: Wishlist[]
 }
