@@ -1,46 +1,53 @@
-import { IsArray, IsDate, IsDecimal, IsEmail, IsOptional, IsString, MaxLength, MinLength } from "class-validator";
+import {
+  IsArray,
+  IsDate,
+  IsDecimal,
+  IsEmail,
+  IsOptional,
+  IsString,
+  MaxLength,
+  MinLength,
+} from "class-validator";
 import { Wish } from "src/wishes/wish.model";
 import { Wishlist } from "src/wishlists/wishlist.model";
 
 export class CreateUserDto {
+  @IsString()
+  @MinLength(1)
+  @MaxLength(64)
+  username: string;
 
-    @IsString()
-    @MinLength(1)
-    @MaxLength(64)
-    username: string;
+  @IsOptional()
+  @IsString()
+  @MaxLength(200)
+  about: string;
 
-    @IsOptional()
-    @IsString()
-    @MaxLength(200)
-    about: string
-    
-    @IsEmail()
-    email: string;
-    
-    @IsString()
-    @MinLength(2)
-    password: string;
-    
+  @IsEmail()
+  email: string;
 
-    @IsOptional()
-    @IsString()
-    avatar: string
+  @IsString()
+  @MinLength(2)
+  password: string;
 
-    @IsDecimal()
-     id: number
+  @IsOptional()
+  @IsString()
+  avatar: string;
 
-     @IsDate()
-         createdAt: Date
+  @IsDecimal()
+  id: number;
 
-     @IsDate()
-         updatedAt: Date
+  @IsDate()
+  createdAt: Date;
 
-    @IsArray()
-    wishes: Wish[]
+  @IsDate()
+  updatedAt: Date;
 
-    @IsArray()
-    offers: Wish[]
+  @IsArray()
+  wishes: Wish[];
 
-    @IsArray()
-    wishlists: Wishlist[]
+  @IsArray()
+  offers: Wish[];
+
+  @IsArray()
+  wishlists: Wishlist[];
 }

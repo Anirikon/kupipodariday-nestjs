@@ -2,27 +2,26 @@ import { User } from "src/users/user.model";
 import { Wish } from "src/wishes/wish.model";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
-
 @Entity()
 export class Offer {
-    @PrimaryGeneratedColumn()
-        id: number
-    
-        @Column()
-        createdAt: Date
-    
-        @Column()
-        updatedAt: Date
+  @PrimaryGeneratedColumn()
+  id: number;
 
-        @ManyToOne(() => User, id => id.offers)
-        user: User
+  @Column()
+  createdAt: Date;
 
-        @ManyToOne(() => Wish, (wish) => wish.offers)
-        item: Wish
+  @Column()
+  updatedAt: Date;
 
-        @Column()
-        amount: number
+  @ManyToOne(() => User, (id) => id.offers)
+  user: User;
 
-        @Column({ default: false })
-        hidden: boolean
+  @ManyToOne(() => Wish, (wish) => wish.offers)
+  item: Wish;
+
+  @Column()
+  amount: number;
+
+  @Column({ default: false })
+  hidden: boolean;
 }

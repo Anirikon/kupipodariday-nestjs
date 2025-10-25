@@ -1,25 +1,30 @@
-import { IsDate, IsDecimal, IsSemVer, IsString, IsUrl, MaxLength, MinLength } from "class-validator";
-
+import {
+  IsDate,
+  IsDecimal,
+  IsString,
+  IsUrl,
+  MaxLength,
+  MinLength,
+} from "class-validator";
 
 export class UserPublicProfileResponseDto {
-    @IsDecimal()
-    id: number
+  @IsDecimal()
+  id: number;
 
-    @IsString()
-    @MinLength(1)
-    @MaxLength(64)
-    username: string
+  @IsString()
+  @MinLength(1)
+  @MaxLength(64)
+  username: string;
 
-    @IsString()
-    about: string
+  @IsString()
+  about: string;
 
-    @IsUrl()
-    avatar: string
+  @IsUrl()
+  avatar: string;
 
-    @IsDate()
-    createdAt: Date
+  @IsDate()
+  createdAt: Date;
 
-    @IsDate()
-    updatedAt: Date
-
+  @IsDate()
+  updatedAt: Date;
 }
