@@ -18,7 +18,7 @@ import { DataSource } from "typeorm/browser";
 export class WishesService {
   constructor(
     @InjectRepository(Wish) private wishRepository: Repository<Wish>,
-    @InjectDataSource() private dataSource: DataSource
+    @InjectDataSource() private dataSource: DataSource,
   ) {}
   async findAll(): Promise<Wish[]> {
     return this.wishRepository.find();
@@ -45,7 +45,7 @@ export class WishesService {
     if (wish.owner.id !== user.id) {
       throw new HttpException(
         "Нельзя редактрировать чужой список",
-        HttpStatus.FORBIDDEN
+        HttpStatus.FORBIDDEN,
       );
     }
 
@@ -53,7 +53,7 @@ export class WishesService {
     return await this.wishRepository.save(updateWish);
   }
 
-  async delete(id: number, user: User): Promise<Object> {
+  async delete(id: number, user: User): Promise<object> {
     const wish = await this.findOne(id);
     if (!wish) {
       throw new NotFoundException(`Подарок с ID: ${id} не найден`);
@@ -62,7 +62,7 @@ export class WishesService {
     if (wish.owner.id !== user.id) {
       throw new HttpException(
         "Нельзя редактрировать чужой список",
-        HttpStatus.FORBIDDEN
+        HttpStatus.FORBIDDEN,
       );
     }
 
@@ -121,7 +121,9 @@ export class WishesService {
       return savedWish;
     } catch (err) {
       await queryRunner.rollbackTransaction();
-      throw new InternalServerErrorException("Не удалось скопировать подарок");
+      throw new InternalServerErrorException(
+        `Ошибка: ${err}. Не удалось скопировать подарок`,
+      );
     } finally {
       await queryRunner.release();
     }
