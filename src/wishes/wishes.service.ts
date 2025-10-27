@@ -12,7 +12,7 @@ import { Repository } from "typeorm";
 import { CreateWishDto } from "./dtoWish/create-wish.dto";
 import { UpdateWishDto } from "./dtoWish/update-wish.dto";
 import { User } from "src/users/user.model";
-import { DataSource } from "typeorm/browser";
+import { DataSource } from "typeorm";
 
 @Injectable()
 export class WishesService {

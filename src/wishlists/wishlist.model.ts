@@ -44,7 +44,7 @@ export class Wishlist {
       referencedColumnName: "id",
     },
   })
-  items: WishPartial[];
+  items: Wish[];
 
   @IsArray()
   itemsId: number[];

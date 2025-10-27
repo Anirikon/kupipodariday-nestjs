@@ -10,7 +10,7 @@ import { Repository } from "typeorm";
 import { CreateOfferDto } from "./dtoOffers/create-offer.dto";
 import { User } from "src/users/user.model";
 import { Wish } from "src/wishes/wish.model";
-import { DataSource } from "typeorm/browser";
+import { DataSource } from "typeorm";
 
 @Injectable()
 export class OffersService {
