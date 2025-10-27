@@ -37,7 +37,7 @@ import { EncryptionModule } from "./encryption/encryption.module";
     WishlistsModule,
     OffersModule,
     AuthModule,
-    EncryptionModule
+    EncryptionModule,
   ],
 })
 export class AppModule {}

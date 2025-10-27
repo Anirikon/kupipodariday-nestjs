@@ -17,7 +17,7 @@ export class WishlistsService {
   constructor(
     @InjectRepository(Wishlist)
     private wishlistRepository: Repository<Wishlist>,
-    @InjectRepository(Wish) 
+    @InjectRepository(Wish)
     private wishRepository: Repository<Wish>,
   ) {}
   async findAll(): Promise<Wishlist[]> {
