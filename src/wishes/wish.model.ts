@@ -1,16 +1,23 @@
 import { Offer } from "src/offers/offer.model";
 import { UserPublicProfileResponseDto } from "src/users/dtoUser/user-public-profile-response.dto";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
 
 @Entity()
 export class Wish {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: "date" })
+  @CreateDateColumn()
   createdAt: Date;
 
-  @Column({ type: "date" })
+  @UpdateDateColumn()
   updatedAt: Date;
 
   @Column({ type: "varchar", length: 250 })
