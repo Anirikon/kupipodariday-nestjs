@@ -1,9 +1,11 @@
 import { Offer } from "src/offers/offer.model";
-import { UserPublicProfileResponseDto } from "src/users/dtoUser/user-public-profile-response.dto";
+import { User } from "src/users/user.model";
 import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToMany,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -35,8 +37,8 @@ export class Wish {
   @Column({ type: "int" })
   raised: number;
 
-  @Column()
-  owner: UserPublicProfileResponseDto;
+  @ManyToOne(() => User, (user) => user.wishes)
+  owner: User;
 
   @Column({ type: "varchar", length: 1024 })
   description: string;

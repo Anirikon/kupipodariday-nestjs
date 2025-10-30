@@ -1,5 +1,5 @@
 import { IsArray } from "class-validator";
-import { UserPublicProfileResponseDto } from "src/users/dtoUser/user-public-profile-response.dto";
+import { User } from "src/users/user.model";
 import { Wish } from "src/wishes/wish.model";
 import {
   Column,
@@ -7,6 +7,7 @@ import {
   Entity,
   JoinTable,
   ManyToMany,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -30,8 +31,8 @@ export class Wishlist {
   @Column()
   image: string;
 
-  @Column()
-  owner: UserPublicProfileResponseDto;
+  @ManyToOne(() => User, (user) => user.wishlists)
+  owner: User;
 
   @ManyToMany(() => Wish)
   @JoinTable({
