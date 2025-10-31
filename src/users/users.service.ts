@@ -10,11 +10,13 @@ import { UpdateUserDto } from "./dtoUser/update-user.dto";
 import { CreateUserDto } from "./dtoUser/create-user.dto";
 import { Wish } from "src/wishes/wish.model";
 import { FindUserDto } from "./dtoUser/find-user.dto";
+import { EncryptionService } from "src/encryption/encryption.service";
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>,
+    private encryptionService: EncryptionService,
   ) {}
 
   async findOne(id: number): Promise<User> {
@@ -25,17 +27,24 @@ export class UsersService {
     return user;
   }
 
-  async create(user: CreateUserDto): Promise<CreateUserDto> {
-    const username = await this.userRepository.findOneBy({
-      username: user.username,
+  async create(createUserDto: CreateUserDto): Promise<User> {
+    const existingUser = await this.userRepository.findOne({
+      where: { email: createUserDto.email },
     });
-    const email = await this.userRepository.findOneBy({ email: user.email });
-    if (username) {
-      throw new ConflictException("Пользователь с таким ником уже существует");
+
+    if (existingUser) {
+      throw new ConflictException('Пользователь с таким email уже существует');
     }
-    if (email) {
-      throw new ConflictException("Пользователь с таким email уже существует");
-    }
+
+    const hashedPassword = await this.encryptionService.hashPassword(
+      createUserDto.password,
+    );
+
+    const user = this.userRepository.create({
+      ...createUserDto,
+      password: hashedPassword,
+    });
+
     return this.userRepository.save(user);
   }
 

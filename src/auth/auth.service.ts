@@ -20,24 +20,13 @@ export class AuthService {
     };
   }
 
-  async validatePassword(username: string, password: string) {
+   async validateUser(username: string, password: string): Promise<any> {
     const user = await this.usersService.findOneByUsername(username);
-
-    /* В идеальном случае пароль обязательно должен быть захэширован */
-    if (user) {
-      const isPasswordValid = await this.encryptionService.verifyPassword(
-        password,
-        user.password,
-      );
-
-      if (isPasswordValid) {
-        // Убираем пароль из возвращаемого объекта
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { password: _, ...result } = user;
-        return result;
-      }
+    if (user && await this.encryptionService.verifyPassword(password, user.password)) {
+      const { password, ...result } = user;
+      return result;
     }
-
     return null;
   }
+
 }

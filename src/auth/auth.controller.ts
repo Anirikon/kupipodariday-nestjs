@@ -25,10 +25,12 @@ export class AuthController {
   @UseGuards(LocalGuard)
   @Post("signin")
   signin(@Req() req) {
+    console.log(req)
     const user = req.user;
 
     return this.authService.auth(user);
   }
+
 
   @Post("signup")
   async signup(@Body() createUserDto: CreateUserDto) {

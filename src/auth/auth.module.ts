@@ -8,6 +8,7 @@ import { JwtModule, JwtService } from "@nestjs/jwt";
 import { EncryptionModule } from "src/encryption/encryption.module";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { EncryptionService } from "src/encryption/encryption.service";
+import { LocalStrategy } from "./local.strategy";
 
 @Module({
   imports: [
@@ -24,7 +25,7 @@ import { EncryptionService } from "src/encryption/encryption.service";
       global: true,
     }),
   ],
-  providers: [AuthService, JwtStrategy, EncryptionService, JwtService],
+  providers: [AuthService, JwtStrategy, EncryptionService, JwtService, LocalStrategy],
   controllers: [AuthController],
   exports: [AuthService],
 })
