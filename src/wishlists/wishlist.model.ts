@@ -1,12 +1,15 @@
-import { UserPublicProfileResponseDto } from "src/users/dtoUser/user-public-profile-response.dto";
-import { WishPartial } from "src/wishes/wish-partial.model";
+import { IsArray } from "class-validator";
+import { User } from "src/users/user.model";
 import { Wish } from "src/wishes/wish.model";
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinTable,
   ManyToMany,
+  ManyToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from "typeorm";
 
 @Entity()
@@ -14,10 +17,10 @@ export class Wishlist {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @CreateDateColumn()
   createdAt: Date;
 
-  @Column()
+  @UpdateDateColumn()
   updatedAt: Date;
 
   @Column({
@@ -28,8 +31,8 @@ export class Wishlist {
   @Column()
   image: string;
 
-  @Column()
-  owner: UserPublicProfileResponseDto;
+  @ManyToOne(() => User, (user) => user.wishlists)
+  owner: User;
 
   @ManyToMany(() => Wish)
   @JoinTable({
@@ -43,5 +46,8 @@ export class Wishlist {
       referencedColumnName: "id",
     },
   })
-  items: WishPartial[];
+  items: Wish[];
+
+  @IsArray()
+  itemsId: number[];
 }

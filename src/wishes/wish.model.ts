@@ -1,16 +1,25 @@
 import { Offer } from "src/offers/offer.model";
-import { UserPublicProfileResponseDto } from "src/users/dtoUser/user-public-profile-response.dto";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "src/users/user.model";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
 
 @Entity()
 export class Wish {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: "date" })
+  @CreateDateColumn()
   createdAt: Date;
 
-  @Column({ type: "date" })
+  @UpdateDateColumn()
   updatedAt: Date;
 
   @Column({ type: "varchar", length: 250 })
@@ -28,8 +37,8 @@ export class Wish {
   @Column({ type: "int" })
   raised: number;
 
-  @Column()
-  owner: UserPublicProfileResponseDto;
+  @ManyToOne(() => User, (user) => user.wishes)
+  owner: User;
 
   @Column({ type: "varchar", length: 1024 })
   description: string;
